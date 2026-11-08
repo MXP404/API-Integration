@@ -1,0 +1,100 @@
+{
+  "id": "V08",
+  "group": "valid",
+  "title": "Retry with the same Idempotency-Key and the same body (keys reordered) replays the order",
+  "why": "A client times out and resends. The second call must return the first order, not a new one.",
+  "setup": [
+    {
+      "method": "POST",
+      "path": "/v1/orders",
+      "headers": {
+        "Authorization": "Bearer {{key:live}}",
+        "Content-Type": "application/json",
+        "Idempotency-Key": "{{idem:r}}"
+      },
+      "body": {
+        "ref": "TEST-PO-1008",
+        "pickup": {
+          "address": "1200 Example Pkwy, Elk Grove Village, IL, 60007",
+          "date": "{{date:+3}}"
+        },
+        "delivery": {
+          "address": "2200 Sample Rd, Columbus, OH, 43217",
+          "date": "{{date:+4}}"
+        },
+        "equipment": "tractor",
+        "pieces": 12,
+        "weight": {
+          "value": 2400,
+          "unit": "lbs"
+        },
+        "commodity": "Boxed machine parts"
+      },
+      "expect": {
+        "status": 201
+      },
+      "save": {
+        "id": "id"
+      }
+    }
+  ],
+  "request": {
+    "method": "POST",
+    "path": "/v1/orders",
+    "headers": {
+      "Authorization": "Bearer {{key:live}}",
+      "Content-Type": "application/json",
+      "Idempotency-Key": "{{idem:r}}"
+    },
+    "body": {
+      "commodity": "Boxed machine parts",
+      "weight": {
+        "unit": "lbs",
+        "value": 2400
+      },
+      "pieces": 12,
+      "equipment": "tractor",
+      "delivery": {
+        "date": "{{date:+4}}",
+        "address": "2200 Sample Rd, Columbus, OH, 43217"
+      },
+      "pickup": {
+        "date": "{{date:+3}}",
+        "address": "1200 Example Pkwy, Elk Grove Village, IL, 60007"
+      },
+      "ref": "TEST-PO-1008"
+    }
+  },
+  "expect": {
+    "status": 200,
+    "content_type": "application/json",
+    "body": {
+      "ref": "TEST-PO-1008",
+      "status": "submitted",
+      "pickup": {
+        "address": "1200 Example Pkwy, Elk Grove Village, IL, 60007",
+        "date": "{{date:+3}}"
+      },
+      "delivery": {
+        "address": "2200 Sample Rd, Columbus, OH, 43217",
+        "date": "{{date:+4}}"
+      },
+      "equipment": "tractor",
+      "pieces": 12,
+      "weight": {
+        "value": 2400,
+        "unit": "lbs"
+      },
+      "commodity": "Boxed machine parts",
+      "loads": [],
+      "id": "{{saved:id}}"
+    },
+    "body_match": {
+      "id": "^REQ-[0-9]+$",
+      "created_at": "^[0-9]{4}-[0-9]{2}-[0-9]{2}T[0-9]{2}:[0-9]{2}:[0-9]{2}Z$"
+    },
+    "headers": {
+      "Idempotency-Replayed": "true"
+    }
+  }
+}

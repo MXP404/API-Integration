@@ -1,0 +1,45 @@
+{
+  "id": "F12",
+  "group": "failing",
+  "title": "Content-Type text/plain",
+  "why": "HTTP library default when the body is a string.",
+  "request": {
+    "method": "POST",
+    "path": "/v1/orders",
+    "headers": {
+      "Authorization": "Bearer {{key:live}}",
+      "Content-Type": "text/plain",
+      "Idempotency-Key": "{{idem}}"
+    },
+    "body": {
+      "ref": "TEST-PO-1001",
+      "pickup": {
+        "address": "1200 Example Pkwy, Elk Grove Village, IL, 60007",
+        "date": "{{date:+3}}"
+      },
+      "delivery": {
+        "address": "2200 Sample Rd, Columbus, OH, 43217",
+        "date": "{{date:+4}}"
+      },
+      "equipment": "tractor",
+      "pieces": 12,
+      "weight": {
+        "value": 2400,
+        "unit": "lbs"
+      },
+      "commodity": "Boxed machine parts"
+    }
+  },
+  "expect": {
+    "status": 415,
+    "content_type": "application/problem+json",
+    "body": {
+      "type": "about:blank",
+      "title": "Unsupported media type",
+      "status": 415,
+      "code": "unsupported_media_type",
+      "detail": "The request body must be application/json."
+    },
+    "no_errors": true
+  }
+}

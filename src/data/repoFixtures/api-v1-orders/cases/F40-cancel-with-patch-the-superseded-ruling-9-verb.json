@@ -1,0 +1,68 @@
+{
+  "id": "F40",
+  "group": "failing",
+  "title": "Cancel with PATCH (the superseded ruling 9 verb)",
+  "why": "Client built against the 11-06 docs.",
+  "setup": [
+    {
+      "method": "POST",
+      "path": "/v1/orders",
+      "headers": {
+        "Authorization": "Bearer {{key:live}}",
+        "Content-Type": "application/json",
+        "Idempotency-Key": "{{idem:setup}}"
+      },
+      "body": {
+        "ref": "TEST-PO-1040",
+        "pickup": {
+          "address": "1200 Example Pkwy, Elk Grove Village, IL, 60007",
+          "date": "{{date:+3}}"
+        },
+        "delivery": {
+          "address": "2200 Sample Rd, Columbus, OH, 43217",
+          "date": "{{date:+4}}"
+        },
+        "equipment": "tractor",
+        "pieces": 12,
+        "weight": {
+          "value": 2400,
+          "unit": "lbs"
+        },
+        "commodity": "Boxed machine parts"
+      },
+      "expect": {
+        "status": 201
+      },
+      "save": {
+        "id": "id"
+      }
+    }
+  ],
+  "request": {
+    "method": "PATCH",
+    "path": "/v1/orders/{{saved:id}}/cancel",
+    "headers": {
+      "Authorization": "Bearer {{key:live}}"
+    }
+  },
+  "expect": {
+    "status": 404,
+    "content_type": "application/problem+json",
+    "body": {
+      "type": "about:blank",
+      "title": "Not found",
+      "status": 404,
+      "code": "not_found",
+      "detail": "Nothing was found for this key."
+    },
+    "no_errors": true
+  },
+  "contract": {
+    "status": 405,
+    "headers": {
+      "Allow": "PUT"
+    },
+    "note": "Contract documents 405 for this path. With no cancel route built, every method answers 404."
+  },
+  "gap": "cancel-not-built"
+}

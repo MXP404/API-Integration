@@ -1,0 +1,24 @@
+{
+  "id": "V10",
+  "group": "valid",
+  "title": "List submitted orders, 5 per page",
+  "why": "A client polls its open orders.",
+  "request": {
+    "method": "GET",
+    "path": "/v1/orders?status=submitted&limit=5",
+    "headers": {
+      "Authorization": "Bearer {{key:live}}"
+    }
+  },
+  "expect": {
+    "status": 200,
+    "content_type": "application/json",
+    "body_match": {
+      "has_more": "^(true|false)$"
+    },
+    "body_types": {
+      "data": "array",
+      "has_more": "boolean"
+    }
+  }
+}

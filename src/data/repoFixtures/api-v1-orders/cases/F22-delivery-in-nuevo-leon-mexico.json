@@ -1,0 +1,52 @@
+{
+  "id": "F22",
+  "group": "failing",
+  "title": "Delivery in Nuevo Leon, Mexico",
+  "why": "Ruling 15: CA and MX read only when certain, refused today.",
+  "request": {
+    "method": "POST",
+    "path": "/v1/orders",
+    "headers": {
+      "Authorization": "Bearer {{key:live}}",
+      "Content-Type": "application/json",
+      "Idempotency-Key": "{{idem}}"
+    },
+    "body": {
+      "ref": "TEST-PO-1022",
+      "pickup": {
+        "address": "1200 Example Pkwy, Elk Grove Village, IL, 60007",
+        "date": "{{date:+3}}"
+      },
+      "delivery": {
+        "address": "Av. Ejemplo 200, Monterrey, NL, 64000, MX",
+        "date": "{{date:+6}}"
+      },
+      "equipment": "tractor",
+      "pieces": 12,
+      "weight": {
+        "value": 2400,
+        "unit": "lbs"
+      },
+      "commodity": "Boxed machine parts"
+    }
+  },
+  "expect": {
+    "status": 400,
+    "content_type": "application/problem+json",
+    "body": {
+      "type": "about:blank",
+      "title": "Bad request",
+      "status": 400,
+      "code": "bad_request",
+      "detail": "The request body has 1 problem."
+    },
+    "errors": [
+      {
+        "field": "delivery.address",
+        "code": "outside_service_area",
+        "message": "The delivery address is in NL, MX, which is outside the Moscoso Express service area.",
+        "fix": "This order was not placed; contact API@MoscosoExpress.com to ask about this lane."
+      }
+    ]
+  }
+}

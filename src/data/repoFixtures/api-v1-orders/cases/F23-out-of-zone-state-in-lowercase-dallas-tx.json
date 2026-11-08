@@ -1,0 +1,63 @@
+{
+  "id": "F23",
+  "group": "failing",
+  "title": "Out-of-zone state in lowercase (\"dallas, tx\")",
+  "why": "Client lowercases addresses before sending.",
+  "request": {
+    "method": "POST",
+    "path": "/v1/orders",
+    "headers": {
+      "Authorization": "Bearer {{key:live}}",
+      "Content-Type": "application/json",
+      "Idempotency-Key": "{{idem}}"
+    },
+    "body": {
+      "ref": "TEST-PO-1023",
+      "pickup": {
+        "address": "1200 Example Pkwy, Elk Grove Village, IL, 60007",
+        "date": "{{date:+3}}"
+      },
+      "delivery": {
+        "address": "4100 Example Blvd, dallas, tx 75201",
+        "date": "{{date:+5}}"
+      },
+      "equipment": "tractor",
+      "pieces": 12,
+      "weight": {
+        "value": 2400,
+        "unit": "lbs"
+      },
+      "commodity": "Boxed machine parts"
+    }
+  },
+  "expect": {
+    "status": 201,
+    "content_type": "application/json",
+    "body": {
+      "ref": "TEST-PO-1023",
+      "status": "submitted",
+      "pickup": {
+        "address": "1200 Example Pkwy, Elk Grove Village, IL, 60007",
+        "date": "{{date:+3}}"
+      },
+      "delivery": {
+        "address": "4100 Example Blvd, dallas, tx 75201",
+        "date": "{{date:+5}}"
+      },
+      "equipment": "tractor",
+      "pieces": 12,
+      "weight": {
+        "value": 2400,
+        "unit": "lbs"
+      },
+      "commodity": "Boxed machine parts",
+      "loads": []
+    },
+    "body_match": {
+      "id": "^REQ-[0-9]+$",
+      "created_at": "^[0-9]{4}-[0-9]{2}-[0-9]{2}T[0-9]{2}:[0-9]{2}:[0-9]{2}Z$"
+    }
+  },
+  "note": "Placed, by design: only an exact uppercase code can refuse (service_area.js stateOfSegment), so a lowercase out-of-zone code reads as unreadable and goes to review. The client is not told; a person must catch it in Requests.",
+  "gap": "zone-slips-to-review"
+}

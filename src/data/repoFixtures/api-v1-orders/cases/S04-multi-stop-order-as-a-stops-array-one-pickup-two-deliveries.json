@@ -1,0 +1,78 @@
+{
+  "id": "S04",
+  "group": "contract-shape",
+  "title": "Multi-stop order as a stops array (one pickup, two deliveries)",
+  "why": "Owner review 11-06: orders take an array of stops. Field names here are provisional; neither the contract nor the code has a stops array.",
+  "request": {
+    "method": "POST",
+    "path": "/v1/orders",
+    "headers": {
+      "Authorization": "Bearer {{key:live}}",
+      "Content-Type": "application/json",
+      "Idempotency-Key": "{{idem}}"
+    },
+    "body": {
+      "ref": "TEST-PO-2004",
+      "stops": [
+        {
+          "type": "pickup",
+          "address": "1200 Example Pkwy, Elk Grove Village, IL, 60007",
+          "date": "{{date:+3}}"
+        },
+        {
+          "type": "delivery",
+          "address": "450 Placeholder Ave, Milwaukee, WI 53204",
+          "date": "{{date:+3}}"
+        },
+        {
+          "type": "delivery",
+          "address": "15 Warehouse Row, Joliet, IL 60431",
+          "date": "{{date:+4}}"
+        }
+      ],
+      "equipment": "straight_truck",
+      "pieces": 9,
+      "weight": {
+        "value": 3100,
+        "unit": "lbs"
+      },
+      "commodity": "Retail fixtures"
+    }
+  },
+  "expect": {
+    "status": 400,
+    "content_type": "application/problem+json",
+    "body": {
+      "type": "about:blank",
+      "title": "Bad request",
+      "status": 400,
+      "code": "bad_request",
+      "detail": "The request body has 3 problems."
+    },
+    "errors": [
+      {
+        "field": "stops",
+        "code": "unknown_field",
+        "message": "stops is not a field of this API.",
+        "fix": "Remove this field."
+      },
+      {
+        "field": "pickup",
+        "code": "required",
+        "message": "pickup is missing.",
+        "fix": "Send pickup as an object."
+      },
+      {
+        "field": "delivery",
+        "code": "required",
+        "message": "delivery is missing.",
+        "fix": "Send delivery as an object."
+      }
+    ]
+  },
+  "contract": {
+    "status": 400,
+    "note": "Contract 1.0.0 also has no stops array (OrderInput is pickup + delivery, additionalProperties false), so code and contract agree. The gap is against the owner 11-06 load-shape review, which is not in the contract yet."
+  },
+  "gap": "ruled-shape-not-in-contract"
+}

@@ -1,0 +1,28 @@
+{
+  "id": "F38",
+  "group": "failing",
+  "title": "DELETE /v1/orders",
+  "why": "Client tries to clear its orders.",
+  "request": {
+    "method": "DELETE",
+    "path": "/v1/orders",
+    "headers": {
+      "Authorization": "Bearer {{key:live}}"
+    }
+  },
+  "expect": {
+    "status": 405,
+    "content_type": "application/problem+json",
+    "body": {
+      "type": "about:blank",
+      "title": "Method not allowed",
+      "status": 405,
+      "code": "method_not_allowed",
+      "detail": "This path does not support that method."
+    },
+    "no_errors": true,
+    "headers": {
+      "Allow": "GET, POST"
+    }
+  }
+}

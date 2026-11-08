@@ -1,0 +1,52 @@
+{
+  "id": "F20",
+  "group": "failing",
+  "title": "Pickup in Pennsylvania (ruled out on 11-06)",
+  "why": "PA has one lane on file but is not in the service area.",
+  "request": {
+    "method": "POST",
+    "path": "/v1/orders",
+    "headers": {
+      "Authorization": "Bearer {{key:live}}",
+      "Content-Type": "application/json",
+      "Idempotency-Key": "{{idem}}"
+    },
+    "body": {
+      "ref": "TEST-PO-1020",
+      "pickup": {
+        "address": "300 Sample St, Pittsburgh, PA 15222",
+        "date": "{{date:+3}}"
+      },
+      "delivery": {
+        "address": "2200 Sample Rd, Columbus, OH, 43217",
+        "date": "{{date:+4}}"
+      },
+      "equipment": "tractor",
+      "pieces": 12,
+      "weight": {
+        "value": 2400,
+        "unit": "lbs"
+      },
+      "commodity": "Boxed machine parts"
+    }
+  },
+  "expect": {
+    "status": 400,
+    "content_type": "application/problem+json",
+    "body": {
+      "type": "about:blank",
+      "title": "Bad request",
+      "status": 400,
+      "code": "bad_request",
+      "detail": "The request body has 1 problem."
+    },
+    "errors": [
+      {
+        "field": "pickup.address",
+        "code": "outside_service_area",
+        "message": "The pickup address is in PA, which is outside the Moscoso Express service area.",
+        "fix": "This order was not placed; contact API@MoscosoExpress.com to ask about this lane."
+      }
+    ]
+  }
+}

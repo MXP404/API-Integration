@@ -1,0 +1,73 @@
+{
+  "id": "S02",
+  "group": "contract-shape",
+  "title": "Contract hazmat order with hazmat_details",
+  "why": "A hazmat shipper following the contract hazmat example.",
+  "request": {
+    "method": "POST",
+    "path": "/v1/orders",
+    "headers": {
+      "Authorization": "Bearer {{key:live}}",
+      "Content-Type": "application/json",
+      "Idempotency-Key": "{{idem}}"
+    },
+    "body": {
+      "ref": "TEST-PO-2002",
+      "hazmat": true,
+      "hazmat_details": {
+        "un_number": "UN1263",
+        "hazard_class": "3",
+        "weight": {
+          "value": 500,
+          "unit": "lbs"
+        },
+        "emergency_phone": "312-555-0199"
+      },
+      "pickup": {
+        "address": "1200 Example Pkwy, Elk Grove Village, IL, 60007",
+        "date": "{{date:+3}}"
+      },
+      "delivery": {
+        "address": "2200 Sample Rd, Columbus, OH, 43217",
+        "date": "{{date:+4}}"
+      },
+      "equipment": "tractor",
+      "pieces": 10,
+      "weight": {
+        "value": 500,
+        "unit": "lbs"
+      },
+      "commodity": "Paint"
+    }
+  },
+  "expect": {
+    "status": 400,
+    "content_type": "application/problem+json",
+    "body": {
+      "type": "about:blank",
+      "title": "Bad request",
+      "status": 400,
+      "code": "bad_request",
+      "detail": "The request body has 2 problems."
+    },
+    "errors": [
+      {
+        "field": "hazmat",
+        "code": "unknown_field",
+        "message": "hazmat is not a field of this API.",
+        "fix": "Remove this field."
+      },
+      {
+        "field": "hazmat_details",
+        "code": "unknown_field",
+        "message": "hazmat_details is not a field of this API.",
+        "fix": "Remove this field."
+      }
+    ]
+  },
+  "contract": {
+    "status": 201,
+    "note": "Pre-launch item 1 (hazmat required, details when true) is in the contract, not in the code."
+  },
+  "gap": "contract-fields-not-built"
+}

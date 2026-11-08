@@ -1,0 +1,6 @@
+{
+  "name": "LogixForward TMS - Modern Freight Dispatch & Forwarder API Console",
+  "description": "High-density trucking dispatch interface with real-time freight forwarder API integration, telematics routing, load board matching, and carrier HOS compliance.",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}

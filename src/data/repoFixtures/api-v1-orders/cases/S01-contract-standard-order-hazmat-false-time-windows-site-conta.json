@@ -1,0 +1,114 @@
+{
+  "id": "S01",
+  "group": "contract-shape",
+  "title": "Contract standard order: hazmat false, time windows, site contacts",
+  "why": "Exactly what api/openapi.json tells a client to send (its \"standard\" example, with invented data).",
+  "request": {
+    "method": "POST",
+    "path": "/v1/orders",
+    "headers": {
+      "Authorization": "Bearer {{key:live}}",
+      "Content-Type": "application/json",
+      "Idempotency-Key": "{{idem}}"
+    },
+    "body": {
+      "ref": "TEST-PO-2001",
+      "hazmat": false,
+      "pickup": {
+        "address": "1200 Example Pkwy, Elk Grove Village, IL, 60007",
+        "date": "{{date:+3}}",
+        "window_start": "08:30",
+        "window_end": "10:00",
+        "time_type": "target",
+        "contact": {
+          "name": "Casey Example",
+          "phone": "847-555-0142"
+        }
+      },
+      "delivery": {
+        "address": "2200 Sample Rd, Columbus, OH, 43217",
+        "date": "{{date:+4}}",
+        "window_start": "10:00",
+        "time_type": "appointment",
+        "contact": {
+          "name": "Robin Sample",
+          "phone": "614-555-0118"
+        }
+      },
+      "equipment": "tractor",
+      "pieces": 12,
+      "weight": {
+        "value": 2400,
+        "unit": "lbs"
+      },
+      "commodity": "Boxed machine parts",
+      "notes": "Liftgate needed at delivery."
+    }
+  },
+  "expect": {
+    "status": 400,
+    "content_type": "application/problem+json",
+    "body": {
+      "type": "about:blank",
+      "title": "Bad request",
+      "status": 400,
+      "code": "bad_request",
+      "detail": "The request body has 8 problems."
+    },
+    "errors": [
+      {
+        "field": "hazmat",
+        "code": "unknown_field",
+        "message": "hazmat is not a field of this API.",
+        "fix": "Remove this field."
+      },
+      {
+        "field": "pickup.window_start",
+        "code": "unknown_field",
+        "message": "pickup.window_start is not a field of this API.",
+        "fix": "Remove this field."
+      },
+      {
+        "field": "pickup.window_end",
+        "code": "unknown_field",
+        "message": "pickup.window_end is not a field of this API.",
+        "fix": "Remove this field."
+      },
+      {
+        "field": "pickup.time_type",
+        "code": "unknown_field",
+        "message": "pickup.time_type is not a field of this API.",
+        "fix": "Remove this field."
+      },
+      {
+        "field": "pickup.contact",
+        "code": "unknown_field",
+        "message": "pickup.contact is not a field of this API.",
+        "fix": "Remove this field."
+      },
+      {
+        "field": "delivery.window_start",
+        "code": "unknown_field",
+        "message": "delivery.window_start is not a field of this API.",
+        "fix": "Remove this field."
+      },
+      {
+        "field": "delivery.time_type",
+        "code": "unknown_field",
+        "message": "delivery.time_type is not a field of this API.",
+        "fix": "Remove this field."
+      },
+      {
+        "field": "delivery.contact",
+        "code": "unknown_field",
+        "message": "delivery.contact is not a field of this API.",
+        "fix": "Remove this field."
+      }
+    ]
+  },
+  "contract": {
+    "status": 201,
+    "note": "Contract 1.0.0 on api-recut documents hazmat, window_start, window_end, time_type and contact. The validator (validateOrder, refuseUnknown) still allows only ref, pickup{address,date}, delivery{address,date}, equipment, pieces, weight, commodity, notes."
+  },
+  "gap": "contract-fields-not-built"
+}

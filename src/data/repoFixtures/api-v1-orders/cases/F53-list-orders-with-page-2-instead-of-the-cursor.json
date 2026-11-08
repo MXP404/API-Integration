@@ -1,0 +1,24 @@
+{
+  "id": "F53",
+  "group": "failing",
+  "title": "List orders with page=2 instead of the cursor",
+  "why": "Client assumes page-number paging.",
+  "request": {
+    "method": "GET",
+    "path": "/v1/orders?page=2",
+    "headers": {
+      "Authorization": "Bearer {{key:live}}"
+    }
+  },
+  "expect": {
+    "status": 400,
+    "content_type": "application/problem+json",
+    "body": {
+      "title": "Bad request",
+      "status": 400,
+      "code": "bad_request",
+      "detail": "Unknown query parameter."
+    },
+    "no_errors": true
+  }
+}

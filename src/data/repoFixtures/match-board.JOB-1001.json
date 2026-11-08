@@ -1,0 +1,1433 @@
+{
+  "generated_at": "2026-11-09T16:40",
+  "board_at": "2026-11-10T05:30",
+  "board_basis": "snapshot",
+  "data": {
+    "earliest_open_request": "2026-11-10T05:30",
+    "latest_stop_time": "2026-11-09T21:15",
+    "trips_after_board": 42,
+    "trips_after_board_span": {
+      "start": "2026-11-10T06:10",
+      "end": "2026-11-12T19:45"
+    },
+    "lift_gate_recorded": false,
+    "time_off_rows": 1
+  },
+  "rules": {
+    "rest_min_hrs": 10,
+    "rest_under_min": "warn",
+    "time_off": "hard_block",
+    "other_run": "warn",
+    "class_rule": {
+      "straight_truck": [
+        "A",
+        "B"
+      ],
+      "tractor": [
+        "A"
+      ],
+      "sprinter": [
+        "A",
+        "B",
+        "C",
+        "D"
+      ]
+    },
+    "hos_11_14": "not_checked"
+  },
+  "timeline": {
+    "start": "2026-11-10T00:00",
+    "end": "2026-11-13T00:00"
+  },
+  "window": {
+    "start": "2026-11-10T05:30",
+    "end": "2026-11-10T15:00",
+    "hours": 9.5,
+    "needs": "tractor",
+    "needs_source": "run"
+  },
+  "load_confirm": {
+    "on": false,
+    "reply_window_min": 45
+  },
+  "requests": [
+    {
+      "run_key": "JOB-1001",
+      "job_no": "JOB-1001",
+      "ref_no": "REQ-1001",
+      "client_code": "NWS",
+      "client_name": "Northwind Supply Co.",
+      "origin": {
+        "name": "Northwind Supply DC",
+        "city": "Pinecrest, IL"
+      },
+      "dest": {
+        "name": "Riverton Cross-Dock",
+        "city": "Riverton, IN"
+      },
+      "states": [
+        "IL",
+        "IN"
+      ],
+      "depart_at": "2026-11-10T05:30",
+      "depart_source": "Depart-base time on stop #1",
+      "end_at": "2026-11-10T15:00",
+      "run_hrs": 9.5,
+      "times_dropped": 0,
+      "stops_total": 3,
+      "stops_open": 3,
+      "need_driver_n": 1,
+      "need_truck_n": 1,
+      "need_trailer_n": 1,
+      "on_run": {
+        "drivers": [
+          {
+            "id": "drv_demo_01",
+            "name": "Avery C",
+            "stops": 2
+          }
+        ],
+        "trucks": [
+          {
+            "id": "trk_demo_01",
+            "name": "TRK-01",
+            "stops": 2
+          }
+        ],
+        "trailers": [
+          {
+            "id": "trl_demo_01",
+            "name": "DV-101",
+            "stops": 2
+          }
+        ]
+      },
+      "pickup_hours": "5:00 AM - 3:00 PM",
+      "notes": [
+        {
+          "source": "Warehouse note · Northwind Supply DC",
+          "text": "Dock opens 5 AM; check in at the guard shack with the load number."
+        },
+        {
+          "source": "Stop #3 instructions",
+          "text": "Deliver to the rear receiving door; ask for the shift lead."
+        }
+      ],
+      "equipment_need": {
+        "type": "tractor",
+        "source": "run",
+        "detail": "The run's assigned stops use TRK-01."
+      },
+      "routes": [
+        "RTE-1001"
+      ],
+      "open_stops": [
+        {
+          "stop_id": "stp_demo_001",
+          "seq": 1,
+          "leg_type": "PU",
+          "place": "Northwind Supply DC",
+          "city": "Pinecrest, IL",
+          "at": "2026-11-10T05:30",
+          "driver_id": "drv_demo_01",
+          "driver_name": "Avery C",
+          "truck_id": "trk_demo_01",
+          "truck_no": "TRK-01",
+          "trailer_id": "trl_demo_01",
+          "trailer_no": "DV-101"
+        },
+        {
+          "stop_id": "stp_demo_002",
+          "seq": 2,
+          "leg_type": "DEL",
+          "place": "Oak Ridge Plant 2",
+          "city": "Oak Ridge, IN",
+          "at": "2026-11-10T11:30",
+          "driver_id": "drv_demo_01",
+          "driver_name": "Avery C",
+          "truck_id": "trk_demo_01",
+          "truck_no": "TRK-01",
+          "trailer_id": "trl_demo_01",
+          "trailer_no": "DV-101"
+        },
+        {
+          "stop_id": "stp_demo_003",
+          "seq": 3,
+          "leg_type": "DEL",
+          "place": "Riverton Cross-Dock",
+          "city": "Riverton, IN",
+          "at": "2026-11-10T15:00",
+          "driver_id": null,
+          "driver_name": null,
+          "truck_id": null,
+          "truck_no": null,
+          "trailer_id": null,
+          "trailer_no": null
+        }
+      ]
+    },
+    {
+      "run_key": "JOB-1002",
+      "job_no": "JOB-1002",
+      "ref_no": "REQ-1002",
+      "client_code": "BBR",
+      "client_name": "Bluebird Retail Group",
+      "origin": {
+        "name": "Fairview Distribution Center",
+        "city": "Fairview, IN"
+      },
+      "dest": {
+        "name": "Bluebird Store #31",
+        "city": "Greenville, WI"
+      },
+      "states": [
+        "IN",
+        "WI"
+      ],
+      "depart_at": "2026-11-10T07:00",
+      "depart_source": "Depart-base time on stop #1",
+      "end_at": "2026-11-10T16:30",
+      "run_hrs": 9.5,
+      "times_dropped": 1,
+      "stops_total": 4,
+      "stops_open": 4,
+      "need_driver_n": 4,
+      "need_truck_n": 4,
+      "need_trailer_n": 4,
+      "on_run": {
+        "drivers": [],
+        "trucks": [],
+        "trailers": []
+      },
+      "pickup_hours": "6:00 AM - 2:00 PM",
+      "notes": [
+        {
+          "source": "Stop #2 instructions",
+          "text": "Liftgate needed at every store — no dock. Call the store 30 minutes out."
+        }
+      ],
+      "equipment_need": {
+        "type": "straight_truck",
+        "source": "history",
+        "detail": "4 prior BBR runs from Fairview Distribution Center: 3 straight truck, 1 tractor.",
+        "counts": {
+          "straight_truck": 3,
+          "tractor": 1
+        }
+      },
+      "routes": [
+        "RTE-1002"
+      ],
+      "open_stops": [
+        {
+          "stop_id": "stp_demo_004",
+          "seq": 1,
+          "leg_type": "PU",
+          "place": "Fairview Distribution Center",
+          "city": "Fairview, IN",
+          "at": "2026-11-10T07:00",
+          "driver_id": null,
+          "driver_name": null,
+          "truck_id": null,
+          "truck_no": null,
+          "trailer_id": null,
+          "trailer_no": null
+        },
+        {
+          "stop_id": "stp_demo_005",
+          "seq": 2,
+          "leg_type": "DEL",
+          "place": "Bluebird Store #12",
+          "city": "Lakeside, WI",
+          "at": "2026-11-10T11:00",
+          "driver_id": null,
+          "driver_name": null,
+          "truck_id": null,
+          "truck_no": null,
+          "trailer_id": null,
+          "trailer_no": null
+        },
+        {
+          "stop_id": "stp_demo_006",
+          "seq": 3,
+          "leg_type": "DEL",
+          "place": "Bluebird Store #27",
+          "city": "Maple Grove, WI",
+          "at": "2026-11-10T13:30",
+          "driver_id": null,
+          "driver_name": null,
+          "truck_id": null,
+          "truck_no": null,
+          "trailer_id": null,
+          "trailer_no": null
+        },
+        {
+          "stop_id": "stp_demo_007",
+          "seq": 4,
+          "leg_type": "DEL",
+          "place": "Bluebird Store #31",
+          "city": "Greenville, WI",
+          "at": "2026-11-10T16:30",
+          "driver_id": null,
+          "driver_name": null,
+          "truck_id": null,
+          "truck_no": null,
+          "trailer_id": null,
+          "trailer_no": null
+        }
+      ]
+    },
+    {
+      "run_key": "JOB-1003",
+      "job_no": "JOB-1003",
+      "ref_no": "REQ-1003",
+      "client_code": "GPI",
+      "client_name": "Granite Parts Inc.",
+      "origin": {
+        "name": "Oak Ridge Plant 2",
+        "city": "Oak Ridge, IN"
+      },
+      "dest": {
+        "name": "Centerville Yard",
+        "city": "Centerville, IL"
+      },
+      "states": [
+        "IN",
+        "IL"
+      ],
+      "depart_at": "2026-11-11T22:00",
+      "depart_source": "Depart-base time on stop #1",
+      "end_at": "2026-11-12T06:00",
+      "run_hrs": 8,
+      "times_dropped": 0,
+      "stops_total": 2,
+      "stops_open": 2,
+      "need_driver_n": 2,
+      "need_truck_n": 2,
+      "need_trailer_n": 2,
+      "on_run": {
+        "drivers": [],
+        "trucks": [],
+        "trailers": []
+      },
+      "pickup_hours": "9:00 PM - 5:00 AM",
+      "notes": [
+        {
+          "source": "Warehouse note · Oak Ridge Plant 2",
+          "text": "Night receiving 9 PM to 5 AM; check in at the guard shack. Seal number goes on the BOL."
+        },
+        {
+          "source": "Warehouse driver note · Oak Ridge Plant 2",
+          "text": "18 pallets, no stacking. Bring two load bars."
+        }
+      ],
+      "equipment_need": {
+        "type": "tractor",
+        "source": "history",
+        "detail": "5 prior GPI runs from Oak Ridge Plant 2: 5 tractor.",
+        "counts": {
+          "tractor": 5
+        }
+      },
+      "routes": [
+        "RTE-1003"
+      ],
+      "open_stops": [
+        {
+          "stop_id": "stp_demo_008",
+          "seq": 1,
+          "leg_type": "PU",
+          "place": "Oak Ridge Plant 2",
+          "city": "Oak Ridge, IN",
+          "at": "2026-11-11T22:00",
+          "driver_id": null,
+          "driver_name": null,
+          "truck_id": null,
+          "truck_no": null,
+          "trailer_id": null,
+          "trailer_no": null
+        },
+        {
+          "stop_id": "stp_demo_009",
+          "seq": 2,
+          "leg_type": "DEL",
+          "place": "Centerville Yard",
+          "city": "Centerville, IL",
+          "at": "2026-11-12T06:00",
+          "driver_id": null,
+          "driver_name": null,
+          "truck_id": null,
+          "truck_no": null,
+          "trailer_id": null,
+          "trailer_no": null
+        }
+      ]
+    },
+    {
+      "run_key": "JOB-1004",
+      "job_no": "JOB-1004",
+      "ref_no": "REQ-1004",
+      "client_code": "HLF",
+      "client_name": "Harbor Lane Foods",
+      "origin": {
+        "name": "Harbor Lane Kitchen",
+        "city": "Centerville, IL"
+      },
+      "dest": {
+        "name": "Hillcrest Market",
+        "city": "Hillcrest, IN"
+      },
+      "states": [
+        "IL",
+        "IN"
+      ],
+      "depart_at": "2026-11-12T06:00",
+      "depart_source": "Earliest stop time",
+      "end_at": "2026-11-12T13:00",
+      "run_hrs": 7,
+      "times_dropped": 0,
+      "stops_total": 3,
+      "stops_open": 3,
+      "need_driver_n": 3,
+      "need_truck_n": 3,
+      "need_trailer_n": 3,
+      "on_run": {
+        "drivers": [],
+        "trucks": [],
+        "trailers": []
+      },
+      "pickup_hours": null,
+      "notes": [],
+      "equipment_need": {
+        "type": null,
+        "source": null,
+        "detail": "No equipment on the run and no prior runs to go by — choose it."
+      },
+      "routes": [],
+      "open_stops": [
+        {
+          "stop_id": "stp_demo_010",
+          "seq": 1,
+          "leg_type": "PU",
+          "place": "Harbor Lane Kitchen",
+          "city": "Centerville, IL",
+          "at": "2026-11-12T06:00",
+          "driver_id": null,
+          "driver_name": null,
+          "truck_id": null,
+          "truck_no": null,
+          "trailer_id": null,
+          "trailer_no": null
+        },
+        {
+          "stop_id": "stp_demo_011",
+          "seq": 2,
+          "leg_type": "DEL",
+          "place": "Millbrook Grocers",
+          "city": "Millbrook, IN",
+          "at": "2026-11-12T10:00",
+          "driver_id": null,
+          "driver_name": null,
+          "truck_id": null,
+          "truck_no": null,
+          "trailer_id": null,
+          "trailer_no": null
+        },
+        {
+          "stop_id": "stp_demo_012",
+          "seq": 3,
+          "leg_type": "DEL",
+          "place": "Hillcrest Market",
+          "city": "Hillcrest, IN",
+          "at": "2026-11-12T13:00",
+          "driver_id": null,
+          "driver_name": null,
+          "truck_id": null,
+          "truck_no": null,
+          "trailer_id": null,
+          "trailer_no": null
+        }
+      ]
+    }
+  ],
+  "selected": {
+    "run_key": "JOB-1001",
+    "job_no": "JOB-1001",
+    "ref_no": "REQ-1001",
+    "client_code": "NWS",
+    "client_name": "Northwind Supply Co.",
+    "origin": {
+      "name": "Northwind Supply DC",
+      "city": "Pinecrest, IL"
+    },
+    "dest": {
+      "name": "Riverton Cross-Dock",
+      "city": "Riverton, IN"
+    },
+    "states": [
+      "IL",
+      "IN"
+    ],
+    "depart_at": "2026-11-10T05:30",
+    "depart_source": "Depart-base time on stop #1",
+    "end_at": "2026-11-10T15:00",
+    "run_hrs": 9.5,
+    "times_dropped": 0,
+    "stops_total": 3,
+    "stops_open": 3,
+    "need_driver_n": 1,
+    "need_truck_n": 1,
+    "need_trailer_n": 1,
+    "on_run": {
+      "drivers": [
+        {
+          "id": "drv_demo_01",
+          "name": "Avery C",
+          "stops": 2
+        }
+      ],
+      "trucks": [
+        {
+          "id": "trk_demo_01",
+          "name": "TRK-01",
+          "stops": 2
+        }
+      ],
+      "trailers": [
+        {
+          "id": "trl_demo_01",
+          "name": "DV-101",
+          "stops": 2
+        }
+      ]
+    },
+    "pickup_hours": "5:00 AM - 3:00 PM",
+    "notes": [
+      {
+        "source": "Warehouse note · Northwind Supply DC",
+        "text": "Dock opens 5 AM; check in at the guard shack with the load number."
+      },
+      {
+        "source": "Stop #3 instructions",
+        "text": "Deliver to the rear receiving door; ask for the shift lead."
+      }
+    ],
+    "equipment_need": {
+      "type": "tractor",
+      "source": "run",
+      "detail": "The run's assigned stops use TRK-01."
+    },
+    "routes": [
+      "RTE-1001"
+    ],
+    "open_stops": [
+      {
+        "stop_id": "stp_demo_001",
+        "seq": 1,
+        "leg_type": "PU",
+        "place": "Northwind Supply DC",
+        "city": "Pinecrest, IL",
+        "at": "2026-11-10T05:30",
+        "driver_id": "drv_demo_01",
+        "driver_name": "Avery C",
+        "truck_id": "trk_demo_01",
+        "truck_no": "TRK-01",
+        "trailer_id": "trl_demo_01",
+        "trailer_no": "DV-101"
+      },
+      {
+        "stop_id": "stp_demo_002",
+        "seq": 2,
+        "leg_type": "DEL",
+        "place": "Oak Ridge Plant 2",
+        "city": "Oak Ridge, IN",
+        "at": "2026-11-10T11:30",
+        "driver_id": "drv_demo_01",
+        "driver_name": "Avery C",
+        "truck_id": "trk_demo_01",
+        "truck_no": "TRK-01",
+        "trailer_id": "trl_demo_01",
+        "trailer_no": "DV-101"
+      },
+      {
+        "stop_id": "stp_demo_003",
+        "seq": 3,
+        "leg_type": "DEL",
+        "place": "Riverton Cross-Dock",
+        "city": "Riverton, IN",
+        "at": "2026-11-10T15:00",
+        "driver_id": null,
+        "driver_name": null,
+        "truck_id": null,
+        "truck_no": null,
+        "trailer_id": null,
+        "trailer_no": null
+      }
+    ]
+  },
+  "drivers": [
+    {
+      "driver_id": "drv_demo_01",
+      "name": "Avery C",
+      "cdl_class": "A",
+      "cdl_source": "qualifications",
+      "can_drive": [
+        "tractor",
+        "straight_truck",
+        "sprinter"
+      ],
+      "status": {
+        "kind": "on_run",
+        "word": "On JOB-1001",
+        "until": "2026-11-10T11:30"
+      },
+      "hours_7d": 22.5,
+      "hours_days_skipped": 0,
+      "rest": {
+        "start": "2026-11-09T15:10",
+        "legal_at": "2026-11-10T01:10",
+        "source": "assumed_last_movement",
+        "on_shift": false
+      },
+      "fits_window": true,
+      "blocks": [
+        {
+          "kind": "run",
+          "ref": "JOB-1001",
+          "clients": [
+            "NWS"
+          ],
+          "start": "2026-11-10T05:30",
+          "end": "2026-11-10T11:30",
+          "stops": [
+            1,
+            2
+          ],
+          "stops_total": 3,
+          "first": "Northwind Supply DC",
+          "last": "Oak Ridge Plant 2",
+          "label": "JOB-1001 · NWS"
+        },
+        {
+          "kind": "rest",
+          "start": "2026-11-09T15:10",
+          "end": "2026-11-10T01:10",
+          "source": "assumed_last_movement",
+          "label": "10h rest · last movement Nov 9, 3:10 PM"
+        }
+      ]
+    },
+    {
+      "driver_id": "drv_demo_02",
+      "name": "Bianca M",
+      "cdl_class": "A",
+      "cdl_source": "qualifications",
+      "can_drive": [
+        "tractor",
+        "straight_truck",
+        "sprinter"
+      ],
+      "status": {
+        "kind": "ready",
+        "word": "Ready"
+      },
+      "hours_7d": 31.5,
+      "hours_days_skipped": 0,
+      "rest": {
+        "start": "2026-11-08T18:20",
+        "legal_at": "2026-11-09T04:20",
+        "source": "parked_at_base",
+        "on_shift": false
+      },
+      "fits_window": true,
+      "blocks": [
+        {
+          "kind": "run",
+          "ref": "JOB-0998",
+          "clients": [
+            "GPI"
+          ],
+          "start": "2026-11-11T08:00",
+          "end": "2026-11-11T14:00",
+          "stops": [
+            1,
+            2
+          ],
+          "stops_total": 2,
+          "first": "Oak Ridge Plant 2",
+          "last": "Centerville Yard",
+          "label": "JOB-0998 · GPI"
+        }
+      ]
+    },
+    {
+      "driver_id": "drv_demo_03",
+      "name": "Nolan V",
+      "cdl_class": "A",
+      "cdl_source": "qualifications",
+      "can_drive": [
+        "tractor",
+        "straight_truck",
+        "sprinter"
+      ],
+      "status": {
+        "kind": "resting",
+        "word": "In 10h rest · legal 9:45 AM",
+        "legal_at": "2026-11-10T09:45"
+      },
+      "hours_7d": 40,
+      "hours_days_skipped": 0,
+      "rest": {
+        "start": "2026-11-09T23:45",
+        "legal_at": "2026-11-10T09:45",
+        "source": "trip_ended_at_base",
+        "on_shift": false
+      },
+      "fits_window": false,
+      "blocks": [
+        {
+          "kind": "run",
+          "ref": "JOB-0996",
+          "clients": [
+            "PMC"
+          ],
+          "start": "2026-11-10T12:00",
+          "end": "2026-11-10T17:00",
+          "stops": [
+            1,
+            2
+          ],
+          "stops_total": 2,
+          "first": "Pinecrest Medical DC",
+          "last": "Lakeside Clinic Supply Room",
+          "label": "JOB-0996 · PMC"
+        },
+        {
+          "kind": "rest",
+          "start": "2026-11-09T23:45",
+          "end": "2026-11-10T09:45",
+          "source": "trip_ended_at_base",
+          "label": "10h rest · last trip ended at base Nov 9, 11:45 PM"
+        }
+      ]
+    },
+    {
+      "driver_id": "drv_demo_04",
+      "name": "Fiona G",
+      "cdl_class": "A",
+      "cdl_source": "qualifications",
+      "can_drive": [
+        "tractor",
+        "straight_truck",
+        "sprinter"
+      ],
+      "status": {
+        "kind": "ready",
+        "word": "Ready"
+      },
+      "hours_7d": 26,
+      "hours_days_skipped": 1,
+      "rest": {
+        "start": "2026-11-09T16:45",
+        "legal_at": "2026-11-10T02:45",
+        "source": "assumed_last_movement",
+        "on_shift": false
+      },
+      "fits_window": true,
+      "blocks": [
+        {
+          "kind": "rest",
+          "start": "2026-11-09T16:45",
+          "end": "2026-11-10T02:45",
+          "source": "assumed_last_movement",
+          "label": "10h rest · last movement Nov 9, 4:45 PM"
+        },
+        {
+          "kind": "off",
+          "start": "2026-11-12T00:00",
+          "end": "2026-11-13T00:00",
+          "label": "Off — personal day · 2026-11-12"
+        }
+      ]
+    },
+    {
+      "driver_id": "drv_demo_05",
+      "name": "Hana S",
+      "cdl_class": "B",
+      "cdl_source": "qualifications",
+      "can_drive": [
+        "straight_truck",
+        "sprinter"
+      ],
+      "status": {
+        "kind": "ready",
+        "word": "Ready"
+      },
+      "hours_7d": 12.5,
+      "hours_days_skipped": 0,
+      "rest": {
+        "start": "2026-11-09T14:00",
+        "legal_at": "2026-11-10T00:00",
+        "source": "assumed_last_movement",
+        "on_shift": false
+      },
+      "fits_window": true,
+      "blocks": [
+        {
+          "kind": "run",
+          "ref": "JOB-1000",
+          "clients": [
+            "PMC"
+          ],
+          "start": "2026-11-12T07:00",
+          "end": "2026-11-12T12:00",
+          "stops": [
+            1,
+            2
+          ],
+          "stops_total": 2,
+          "first": "Pinecrest Medical DC",
+          "last": "Fairview General Receiving",
+          "label": "JOB-1000 · PMC"
+        }
+      ]
+    }
+  ],
+  "equipment": {
+    "tractors": [
+      {
+        "unit_id": "trk_demo_01",
+        "unit_no": "TRK-01",
+        "kind": "truck",
+        "type": "tractor",
+        "label": "Freightliner Cascadia",
+        "ownership": null,
+        "status": "available",
+        "service_status": "available",
+        "dvir_flag": false,
+        "dvir_detail": null,
+        "at_board": {
+          "word": "Busy · JOB-1001",
+          "kind": "busy"
+        },
+        "free_in_window": true,
+        "busy_in_window": [],
+        "location": {
+          "at": "2026-11-09T18:05",
+          "text": "Pinecrest, IL",
+          "source": "Samsara trip"
+        },
+        "blocks": [
+          {
+            "kind": "run",
+            "ref": "JOB-1001",
+            "clients": [
+              "NWS"
+            ],
+            "start": "2026-11-10T05:30",
+            "end": "2026-11-10T11:30",
+            "label": "JOB-1001 · NWS",
+            "first": "Northwind Supply DC",
+            "last": "Oak Ridge Plant 2"
+          },
+          {
+            "kind": "run",
+            "ref": "JOB-0998",
+            "clients": [
+              "GPI"
+            ],
+            "start": "2026-11-11T08:00",
+            "end": "2026-11-11T14:00",
+            "label": "JOB-0998 · GPI",
+            "first": "Oak Ridge Plant 2",
+            "last": "Centerville Yard"
+          }
+        ]
+      },
+      {
+        "unit_id": "trk_demo_02",
+        "unit_no": "TRK-02",
+        "kind": "truck",
+        "type": "tractor",
+        "label": "Volvo VNL 760",
+        "ownership": null,
+        "status": "at_vendor",
+        "service_status": "available",
+        "dvir_flag": false,
+        "dvir_detail": null,
+        "at_board": {
+          "word": "Shop",
+          "kind": "shop"
+        },
+        "free_in_window": false,
+        "busy_in_window": [],
+        "location": {
+          "at": "2026-11-08T09:20",
+          "text": "Centerville Truck Service",
+          "source": "stop actual"
+        },
+        "blocks": [
+          {
+            "kind": "shop",
+            "start": "2026-11-10T00:00",
+            "end": "2026-11-11T14:00",
+            "label": "At vendor · PM service · back Nov 11, 2:00 PM"
+          }
+        ]
+      }
+    ],
+    "trailers": [
+      {
+        "unit_id": "trl_demo_01",
+        "unit_no": "DV-101",
+        "kind": "trailer",
+        "type": "trailer",
+        "label": "Wabash 53' Dry Van",
+        "ownership": "owned",
+        "status": "available",
+        "service_status": "available",
+        "dvir_flag": false,
+        "dvir_detail": null,
+        "at_board": {
+          "word": "Busy · JOB-1001",
+          "kind": "busy"
+        },
+        "free_in_window": true,
+        "busy_in_window": [],
+        "location": {
+          "at": "2026-11-09T19:40",
+          "text": "Northwind Supply DC",
+          "source": "stop actual"
+        },
+        "blocks": [
+          {
+            "kind": "run",
+            "ref": "JOB-1001",
+            "clients": [
+              "NWS"
+            ],
+            "start": "2026-11-10T05:30",
+            "end": "2026-11-10T11:30",
+            "label": "JOB-1001 · NWS",
+            "first": "Northwind Supply DC",
+            "last": "Oak Ridge Plant 2"
+          },
+          {
+            "kind": "run",
+            "ref": "JOB-0998",
+            "clients": [
+              "GPI"
+            ],
+            "start": "2026-11-11T08:00",
+            "end": "2026-11-11T14:00",
+            "label": "JOB-0998 · GPI",
+            "first": "Oak Ridge Plant 2",
+            "last": "Centerville Yard"
+          }
+        ]
+      }
+    ],
+    "straight_trucks": [
+      {
+        "unit_id": "trk_demo_03",
+        "unit_no": "BOX-01",
+        "kind": "truck",
+        "type": "straight_truck",
+        "label": "Hino 268A · 26' box",
+        "ownership": null,
+        "status": "available",
+        "service_status": "available",
+        "dvir_flag": false,
+        "dvir_detail": null,
+        "at_board": {
+          "word": "Free",
+          "kind": "free"
+        },
+        "free_in_window": true,
+        "busy_in_window": [],
+        "location": {
+          "at": "2026-11-09T16:55",
+          "text": "Fairview, IN",
+          "source": "Samsara trip"
+        },
+        "blocks": [
+          {
+            "kind": "run",
+            "ref": "JOB-1000",
+            "clients": [
+              "PMC"
+            ],
+            "start": "2026-11-12T07:00",
+            "end": "2026-11-12T12:00",
+            "label": "JOB-1000 · PMC",
+            "first": "Pinecrest Medical DC",
+            "last": "Fairview General Receiving"
+          }
+        ]
+      }
+    ],
+    "sprinters": [
+      {
+        "unit_id": "trk_demo_04",
+        "unit_no": "VAN-01",
+        "kind": "truck",
+        "type": "sprinter",
+        "label": null,
+        "ownership": null,
+        "status": "available",
+        "service_status": "available",
+        "dvir_flag": true,
+        "dvir_detail": "Cracked passenger mirror (reported Nov 9)",
+        "at_board": {
+          "word": "Free",
+          "kind": "free"
+        },
+        "free_in_window": false,
+        "busy_in_window": [
+          {
+            "ref": "JOB-0996",
+            "start": "2026-11-10T12:00",
+            "end": "2026-11-10T17:00"
+          }
+        ],
+        "location": null,
+        "blocks": [
+          {
+            "kind": "run",
+            "ref": "JOB-0996",
+            "clients": [
+              "PMC"
+            ],
+            "start": "2026-11-10T12:00",
+            "end": "2026-11-10T17:00",
+            "label": "JOB-0996 · PMC",
+            "first": "Pinecrest Medical DC",
+            "last": "Lakeside Clinic Supply Room"
+          }
+        ]
+      }
+    ]
+  },
+  "counters": {
+    "at": "2026-11-10T05:30",
+    "until": "2026-11-10T15:00",
+    "tractor_drivers": 3,
+    "tractors": 1,
+    "trailers": 1,
+    "tractor_pairs": 1,
+    "straight_drivers": 4,
+    "straight_trucks": 1,
+    "sprinter_drivers": 4,
+    "sprinters": 0,
+    "class_not_on_file_free": 0
+  },
+  "picks": {
+    "run_key": "JOB-1001",
+    "depart_at": "2026-11-10T05:30",
+    "end_at": "2026-11-10T15:00",
+    "hours": 9.5,
+    "needs": "tractor",
+    "needs_source": "run",
+    "formula": "FIT = Free at departure 25 + Lane/pickup history 25 × min(runs,3)/3 (full 25 when already on the run’s other stops) + Client history 20 × min(runs,5)/5 + Equipment experience 15 × min(runs,5)/5 + Fairness 15 × (1 − hours ÷ board high), rounded. Time off and a CDL class that cannot drive the equipment are left out; rest under 10h and overlapping runs only lose the 25 free points and show a warning.",
+    "factors": [
+      "Free at departure (no other run in the window, 10h rest met)",
+      "Lane / pickup history",
+      "Client history",
+      "Equipment experience",
+      "Fairness (hours in the 7 days before the board time)"
+    ],
+    "not_scored": [
+      {
+        "factor": "Distance to pickup",
+        "why": "no driver home base or position is on file"
+      },
+      {
+        "factor": "Reliability",
+        "why": "not scored in this example (412 on-time results, 37 confirm/decline replies on file)"
+      },
+      {
+        "factor": "11h driving / 14h duty",
+        "why": "not checked — the platform does not compute these clocks"
+      }
+    ],
+    "ranked": [
+      {
+        "driver_id": "drv_demo_01",
+        "name": "Avery C",
+        "cdl_class": "A",
+        "score": 88,
+        "parts": [
+          {
+            "factor": "free",
+            "label": "Free at departure",
+            "max": 25,
+            "points": 25,
+            "note": "No other run between Nov 10, 5:30 AM and Nov 10, 3:00 PM; rest met — last movement Nov 9, 3:10 PM, legal Nov 10, 1:10 AM"
+          },
+          {
+            "factor": "lane",
+            "label": "Lane history",
+            "max": 25,
+            "points": 25,
+            "count": 2,
+            "on_this_run": 2,
+            "refs": [
+              "JOB-0895",
+              "JOB-0902"
+            ]
+          },
+          {
+            "factor": "client",
+            "label": "Client history",
+            "max": 20,
+            "points": 16,
+            "count": 4,
+            "refs": [
+              "JOB-0911",
+              "JOB-0918",
+              "JOB-0925",
+              "JOB-0932"
+            ]
+          },
+          {
+            "factor": "equipment",
+            "label": "Equipment experience",
+            "max": 15,
+            "points": 15,
+            "count": 6,
+            "refs": [
+              "JOB-0934",
+              "JOB-0941",
+              "JOB-0948",
+              "JOB-0955",
+              "JOB-0962"
+            ],
+            "note": null
+          },
+          {
+            "factor": "fairness",
+            "label": "Fairness",
+            "max": 15,
+            "points": 6.6,
+            "hours": 22.5,
+            "board_high": 40
+          }
+        ],
+        "reasons": [
+          "Free at departure: no other run in the window; rest met — last movement Nov 9, 3:10 PM, legal Nov 10, 1:10 AM",
+          "Already on 2 of 3 stops of this run — counts as full lane history",
+          "2 runs on this lane (Northwind Supply DC → Riverton Cross-Dock) · on time 5 of 6 known stops",
+          "4 runs for NWS",
+          "Fairness: 22.5 h worked in the 7 days before the board time (board high 40 h)"
+        ],
+        "warnings": [],
+        "free": true,
+        "best_equipment": {
+          "truck": {
+            "unit_id": "trk_demo_01",
+            "unit_no": "TRK-01",
+            "type": "tractor",
+            "why": "already on this run's other stops",
+            "dvir_flag": false,
+            "service_status": "available"
+          },
+          "trailer": {
+            "unit_id": "trl_demo_01",
+            "unit_no": "DV-101",
+            "type": "trailer",
+            "why": "already on this run's other stops",
+            "dvir_flag": false,
+            "service_status": "available"
+          },
+          "missing": null
+        },
+        "rank": 1
+      },
+      {
+        "driver_id": "drv_demo_02",
+        "name": "Bianca M",
+        "cdl_class": "A",
+        "score": 80,
+        "parts": [
+          {
+            "factor": "free",
+            "label": "Free at departure",
+            "max": 25,
+            "points": 25,
+            "note": "No other run between Nov 10, 5:30 AM and Nov 10, 3:00 PM; rest met — parked at base Nov 8, 6:20 PM, legal Nov 9, 4:20 AM"
+          },
+          {
+            "factor": "lane",
+            "label": "Lane history",
+            "max": 25,
+            "points": 25,
+            "count": 3,
+            "on_this_run": 0,
+            "refs": [
+              "JOB-0890",
+              "JOB-0897",
+              "JOB-0904"
+            ]
+          },
+          {
+            "factor": "client",
+            "label": "Client history",
+            "max": 20,
+            "points": 12,
+            "count": 3,
+            "refs": [
+              "JOB-0920",
+              "JOB-0927",
+              "JOB-0934"
+            ]
+          },
+          {
+            "factor": "equipment",
+            "label": "Equipment experience",
+            "max": 15,
+            "points": 15,
+            "count": 8,
+            "refs": [
+              "JOB-0936",
+              "JOB-0943",
+              "JOB-0950",
+              "JOB-0957",
+              "JOB-0964"
+            ],
+            "note": null
+          },
+          {
+            "factor": "fairness",
+            "label": "Fairness",
+            "max": 15,
+            "points": 3.2,
+            "hours": 31.5,
+            "board_high": 40
+          }
+        ],
+        "reasons": [
+          "Free at departure: no other run in the window; rest met — parked at base Nov 8, 6:20 PM, legal Nov 9, 4:20 AM",
+          "3 runs on this lane (Northwind Supply DC → Riverton Cross-Dock) · on time 9 of 9 known stops",
+          "3 runs for NWS",
+          "Fairness: 31.5 h worked in the 7 days before the board time (board high 40 h)",
+          "Asked for this lane in the driver app"
+        ],
+        "warnings": [],
+        "free": true,
+        "best_equipment": {
+          "truck": {
+            "unit_id": "trk_demo_01",
+            "unit_no": "TRK-01",
+            "type": "tractor",
+            "why": "already on this run's other stops",
+            "dvir_flag": false,
+            "service_status": "available"
+          },
+          "trailer": {
+            "unit_id": "trl_demo_01",
+            "unit_no": "DV-101",
+            "type": "trailer",
+            "why": "already on this run's other stops",
+            "dvir_flag": false,
+            "service_status": "available"
+          },
+          "missing": null
+        },
+        "rank": 2
+      },
+      {
+        "driver_id": "drv_demo_04",
+        "name": "Fiona G",
+        "cdl_class": "A",
+        "score": 52,
+        "parts": [
+          {
+            "factor": "free",
+            "label": "Free at departure",
+            "max": 25,
+            "points": 25,
+            "note": "No other run between Nov 10, 5:30 AM and Nov 10, 3:00 PM; rest met — last movement Nov 9, 4:45 PM, legal Nov 10, 2:45 AM"
+          },
+          {
+            "factor": "lane",
+            "label": "Lane history",
+            "max": 25,
+            "points": 8.3,
+            "count": 1,
+            "on_this_run": 0,
+            "refs": [
+              "JOB-0908"
+            ]
+          },
+          {
+            "factor": "client",
+            "label": "Client history",
+            "max": 20,
+            "points": 4,
+            "count": 1,
+            "refs": [
+              "JOB-0938"
+            ]
+          },
+          {
+            "factor": "equipment",
+            "label": "Equipment experience",
+            "max": 15,
+            "points": 9,
+            "count": 3,
+            "refs": [
+              "JOB-0954",
+              "JOB-0961",
+              "JOB-0968"
+            ],
+            "note": null
+          },
+          {
+            "factor": "fairness",
+            "label": "Fairness",
+            "max": 15,
+            "points": 5.3,
+            "hours": 26,
+            "board_high": 40
+          }
+        ],
+        "reasons": [
+          "Free at departure: no other run in the window; rest met — last movement Nov 9, 4:45 PM, legal Nov 10, 2:45 AM",
+          "1 run on this lane (Northwind Supply DC → Riverton Cross-Dock) · on time 3 of 3 known stops",
+          "1 run for NWS",
+          "3 runs on a tractor",
+          "Fairness: 26 h worked in the 7 days before the board time (board high 40 h) · 1 day over 24 h left out (stop-time typo)"
+        ],
+        "warnings": [],
+        "free": true,
+        "best_equipment": {
+          "truck": {
+            "unit_id": "trk_demo_01",
+            "unit_no": "TRK-01",
+            "type": "tractor",
+            "why": "already on this run's other stops",
+            "dvir_flag": false,
+            "service_status": "available"
+          },
+          "trailer": {
+            "unit_id": "trl_demo_01",
+            "unit_no": "DV-101",
+            "type": "trailer",
+            "why": "already on this run's other stops",
+            "dvir_flag": false,
+            "service_status": "available"
+          },
+          "missing": null
+        },
+        "rank": 3
+      },
+      {
+        "driver_id": "drv_demo_03",
+        "name": "Nolan V",
+        "cdl_class": "A",
+        "score": 31,
+        "parts": [
+          {
+            "factor": "free",
+            "label": "Free at departure",
+            "max": 25,
+            "points": 0,
+            "note": "Not free for the whole window — see the warnings"
+          },
+          {
+            "factor": "lane",
+            "label": "Lane history",
+            "max": 25,
+            "points": 8.3,
+            "count": 1,
+            "on_this_run": 0,
+            "refs": [
+              "JOB-0906"
+            ]
+          },
+          {
+            "factor": "client",
+            "label": "Client history",
+            "max": 20,
+            "points": 8,
+            "count": 2,
+            "refs": [
+              "JOB-0929",
+              "JOB-0936"
+            ]
+          },
+          {
+            "factor": "equipment",
+            "label": "Equipment experience",
+            "max": 15,
+            "points": 15,
+            "count": 5,
+            "refs": [
+              "JOB-0938",
+              "JOB-0945",
+              "JOB-0952",
+              "JOB-0959",
+              "JOB-0966"
+            ],
+            "note": null
+          },
+          {
+            "factor": "fairness",
+            "label": "Fairness",
+            "max": 15,
+            "points": 0,
+            "hours": 40,
+            "board_high": 40
+          }
+        ],
+        "reasons": [
+          "1 run on this lane (Northwind Supply DC → Riverton Cross-Dock) · on time 2 of 3 known stops",
+          "2 runs for NWS",
+          "5 runs on a tractor",
+          "Fairness: 40 h worked in the 7 days before the board time (board high 40 h)"
+        ],
+        "warnings": [
+          {
+            "kind": "rest",
+            "legal_at": "2026-11-10T09:45",
+            "text": "In 10h rest · legal Nov 10, 9:45 AM — only 5.8 h after the last trip ended at base Nov 9, 11:45 PM. Still selectable; assigning means knowingly proceeding (Hours H-9)."
+          },
+          {
+            "kind": "overlap",
+            "ref": "JOB-0996",
+            "text": "On JOB-0996 Nov 10, 12:00 PM – Nov 10, 5:00 PM — overlaps this run (soft warning, not a block)"
+          }
+        ],
+        "free": false,
+        "best_equipment": {
+          "truck": {
+            "unit_id": "trk_demo_01",
+            "unit_no": "TRK-01",
+            "type": "tractor",
+            "why": "already on this run's other stops",
+            "dvir_flag": false,
+            "service_status": "available"
+          },
+          "trailer": {
+            "unit_id": "trl_demo_01",
+            "unit_no": "DV-101",
+            "type": "trailer",
+            "why": "already on this run's other stops",
+            "dvir_flag": false,
+            "service_status": "available"
+          },
+          "missing": null
+        },
+        "rank": 4
+      }
+    ],
+    "blocked": [
+      {
+        "driver_id": "drv_demo_05",
+        "name": "Hana S",
+        "kind": "qualification",
+        "reason": "CDL B — a tractor needs Class A"
+      }
+    ]
+  }
+}

@@ -1,0 +1,65 @@
+{
+  "id": "F32",
+  "group": "failing",
+  "title": "Text fields too long: ref 101, commodity 301, notes 2001 characters",
+  "why": "Client concatenates several refs and descriptions.",
+  "request": {
+    "method": "POST",
+    "path": "/v1/orders",
+    "headers": {
+      "Authorization": "Bearer {{key:live}}",
+      "Content-Type": "application/json",
+      "Idempotency-Key": "{{idem}}"
+    },
+    "body": {
+      "ref": "{{fill:101}}",
+      "pickup": {
+        "address": "1200 Example Pkwy, Elk Grove Village, IL, 60007",
+        "date": "{{date:+3}}"
+      },
+      "delivery": {
+        "address": "2200 Sample Rd, Columbus, OH, 43217",
+        "date": "{{date:+4}}"
+      },
+      "equipment": "tractor",
+      "pieces": 12,
+      "weight": {
+        "value": 2400,
+        "unit": "lbs"
+      },
+      "commodity": "{{fill:301}}",
+      "notes": "{{fill:2001}}"
+    }
+  },
+  "expect": {
+    "status": 400,
+    "content_type": "application/problem+json",
+    "body": {
+      "type": "about:blank",
+      "title": "Bad request",
+      "status": 400,
+      "code": "bad_request",
+      "detail": "The request body has 3 problems."
+    },
+    "errors": [
+      {
+        "field": "ref",
+        "code": "too_long",
+        "message": "ref is too long.",
+        "fix": "Send ref as a string of 1 to 100 characters."
+      },
+      {
+        "field": "commodity",
+        "code": "too_long",
+        "message": "commodity is too long.",
+        "fix": "Send commodity as a string of 0 to 300 characters."
+      },
+      {
+        "field": "notes",
+        "code": "too_long",
+        "message": "notes is too long.",
+        "fix": "Send notes as a string of 0 to 2000 characters."
+      }
+    ]
+  }
+}

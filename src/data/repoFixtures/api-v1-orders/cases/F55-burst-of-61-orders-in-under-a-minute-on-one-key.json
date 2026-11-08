@@ -1,0 +1,53 @@
+{
+  "id": "F55",
+  "group": "failing",
+  "title": "Burst of 61 orders in under a minute on one key",
+  "why": "Client flushes a backlog all at once. POST /v1/orders is limited to 60 a minute per key.",
+  "request": {
+    "method": "POST",
+    "path": "/v1/orders",
+    "headers": {
+      "Authorization": "Bearer {{key:rate_burst}}",
+      "Content-Type": "application/json",
+      "Idempotency-Key": "{{idem:n{{n}}}}"
+    },
+    "body": {
+      "ref": "TEST-PO-BURST-{{n}}",
+      "pickup": {
+        "address": "1200 Example Pkwy, Elk Grove Village, IL, 60007",
+        "date": "{{date:+3}}"
+      },
+      "delivery": {
+        "address": "2200 Sample Rd, Columbus, OH, 43217",
+        "date": "{{date:+4}}"
+      },
+      "equipment": "tractor",
+      "pieces": 12,
+      "weight": {
+        "value": 2400,
+        "unit": "lbs"
+      },
+      "commodity": "Boxed machine parts"
+    },
+    "repeat": 61,
+    "expect_each_before_last": {
+      "status": 201
+    }
+  },
+  "expect": {
+    "status": 429,
+    "content_type": "application/problem+json",
+    "body": {
+      "type": "about:blank",
+      "title": "Too many requests",
+      "status": 429,
+      "code": "rate_limited",
+      "detail": "Too many requests. Try again later."
+    },
+    "no_errors": true,
+    "headers": {
+      "Retry-After": "*"
+    }
+  },
+  "note": "Uses its own key so the other cases stay under the limit. The first 60 are placed."
+}

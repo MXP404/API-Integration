@@ -1,0 +1,63 @@
+{
+  "id": "F24",
+  "group": "failing",
+  "title": "Out-of-zone state spelled out (\"Austin, Texas\")",
+  "why": "Client writes full state names.",
+  "request": {
+    "method": "POST",
+    "path": "/v1/orders",
+    "headers": {
+      "Authorization": "Bearer {{key:live}}",
+      "Content-Type": "application/json",
+      "Idempotency-Key": "{{idem}}"
+    },
+    "body": {
+      "ref": "TEST-PO-1024",
+      "pickup": {
+        "address": "1200 Example Pkwy, Elk Grove Village, IL, 60007",
+        "date": "{{date:+3}}"
+      },
+      "delivery": {
+        "address": "55 Sample Ave, Austin, Texas 78701",
+        "date": "{{date:+5}}"
+      },
+      "equipment": "tractor",
+      "pieces": 12,
+      "weight": {
+        "value": 2400,
+        "unit": "lbs"
+      },
+      "commodity": "Boxed machine parts"
+    }
+  },
+  "expect": {
+    "status": 201,
+    "content_type": "application/json",
+    "body": {
+      "ref": "TEST-PO-1024",
+      "status": "submitted",
+      "pickup": {
+        "address": "1200 Example Pkwy, Elk Grove Village, IL, 60007",
+        "date": "{{date:+3}}"
+      },
+      "delivery": {
+        "address": "55 Sample Ave, Austin, Texas 78701",
+        "date": "{{date:+5}}"
+      },
+      "equipment": "tractor",
+      "pieces": 12,
+      "weight": {
+        "value": 2400,
+        "unit": "lbs"
+      },
+      "commodity": "Boxed machine parts",
+      "loads": []
+    },
+    "body_match": {
+      "id": "^REQ-[0-9]+$",
+      "created_at": "^[0-9]{4}-[0-9]{2}-[0-9]{2}T[0-9]{2}:[0-9]{2}:[0-9]{2}Z$"
+    }
+  },
+  "note": "Placed, by design: a full state name can only read an allowed state. Goes to review; the client is not told.",
+  "gap": "zone-slips-to-review"
+}

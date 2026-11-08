@@ -1,0 +1,58 @@
+{
+  "id": "F33",
+  "group": "failing",
+  "title": "Pickup address too short (\"IL\"), delivery address all spaces",
+  "why": "Client sends only a state, and a blank padded field.",
+  "request": {
+    "method": "POST",
+    "path": "/v1/orders",
+    "headers": {
+      "Authorization": "Bearer {{key:live}}",
+      "Content-Type": "application/json",
+      "Idempotency-Key": "{{idem}}"
+    },
+    "body": {
+      "ref": "TEST-PO-1001",
+      "pickup": {
+        "address": "IL",
+        "date": "{{date:+3}}"
+      },
+      "delivery": {
+        "address": "      ",
+        "date": "{{date:+4}}"
+      },
+      "equipment": "tractor",
+      "pieces": 12,
+      "weight": {
+        "value": 2400,
+        "unit": "lbs"
+      },
+      "commodity": "Boxed machine parts"
+    }
+  },
+  "expect": {
+    "status": 400,
+    "content_type": "application/problem+json",
+    "body": {
+      "type": "about:blank",
+      "title": "Bad request",
+      "status": 400,
+      "code": "bad_request",
+      "detail": "The request body has 2 problems."
+    },
+    "errors": [
+      {
+        "field": "pickup.address",
+        "code": "too_short",
+        "message": "pickup.address is too short.",
+        "fix": "Send pickup.address as a string of 5 to 300 characters."
+      },
+      {
+        "field": "delivery.address",
+        "code": "invalid_value",
+        "message": "delivery.address is blank.",
+        "fix": "Send delivery.address as the street address of this stop."
+      }
+    ]
+  }
+}

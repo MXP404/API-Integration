@@ -1,0 +1,58 @@
+{
+  "id": "F21",
+  "group": "failing",
+  "title": "Both stops outside: California pickup, Ontario (Canada) delivery",
+  "why": "Cross-border lane. Ruling 18: postal code in its own segment, then CA, reads Canada.",
+  "request": {
+    "method": "POST",
+    "path": "/v1/orders",
+    "headers": {
+      "Authorization": "Bearer {{key:live}}",
+      "Content-Type": "application/json",
+      "Idempotency-Key": "{{idem}}"
+    },
+    "body": {
+      "ref": "TEST-PO-1021",
+      "pickup": {
+        "address": "18 Test Ave, Sacramento, CA 95814",
+        "date": "{{date:+3}}"
+      },
+      "delivery": {
+        "address": "100 Example St, Toronto, ON, M5V 2T6, CA",
+        "date": "{{date:+6}}"
+      },
+      "equipment": "tractor",
+      "pieces": 12,
+      "weight": {
+        "value": 2400,
+        "unit": "lbs"
+      },
+      "commodity": "Boxed machine parts"
+    }
+  },
+  "expect": {
+    "status": 400,
+    "content_type": "application/problem+json",
+    "body": {
+      "type": "about:blank",
+      "title": "Bad request",
+      "status": 400,
+      "code": "bad_request",
+      "detail": "The request body has 2 problems."
+    },
+    "errors": [
+      {
+        "field": "pickup.address",
+        "code": "outside_service_area",
+        "message": "The pickup address is in CA, which is outside the Moscoso Express service area.",
+        "fix": "This order was not placed; contact API@MoscosoExpress.com to ask about this lane."
+      },
+      {
+        "field": "delivery.address",
+        "code": "outside_service_area",
+        "message": "The delivery address is in ON, CA, which is outside the Moscoso Express service area.",
+        "fix": "This order was not placed; contact API@MoscosoExpress.com to ask about this lane."
+      }
+    ]
+  }
+}

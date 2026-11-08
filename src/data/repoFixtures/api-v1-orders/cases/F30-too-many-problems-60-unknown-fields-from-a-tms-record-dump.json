@@ -1,0 +1,102 @@
+{
+  "id": "F30",
+  "group": "failing",
+  "title": "Too many problems: 60 unknown fields from a TMS record dump",
+  "why": "Client posts its whole internal record.",
+  "request": {
+    "method": "POST",
+    "path": "/v1/orders",
+    "headers": {
+      "Authorization": "Bearer {{key:live}}",
+      "Content-Type": "application/json",
+      "Idempotency-Key": "{{idem}}"
+    },
+    "body": {
+      "ref": "TEST-PO-1001",
+      "pickup": {
+        "address": "1200 Example Pkwy, Elk Grove Village, IL, 60007",
+        "date": "{{date:+3}}"
+      },
+      "delivery": {
+        "address": "2200 Sample Rd, Columbus, OH, 43217",
+        "date": "{{date:+4}}"
+      },
+      "equipment": "tractor",
+      "pieces": 12,
+      "weight": {
+        "value": 2400,
+        "unit": "lbs"
+      },
+      "commodity": "Boxed machine parts",
+      "custom_01": "x",
+      "custom_02": "x",
+      "custom_03": "x",
+      "custom_04": "x",
+      "custom_05": "x",
+      "custom_06": "x",
+      "custom_07": "x",
+      "custom_08": "x",
+      "custom_09": "x",
+      "custom_10": "x",
+      "custom_11": "x",
+      "custom_12": "x",
+      "custom_13": "x",
+      "custom_14": "x",
+      "custom_15": "x",
+      "custom_16": "x",
+      "custom_17": "x",
+      "custom_18": "x",
+      "custom_19": "x",
+      "custom_20": "x",
+      "custom_21": "x",
+      "custom_22": "x",
+      "custom_23": "x",
+      "custom_24": "x",
+      "custom_25": "x",
+      "custom_26": "x",
+      "custom_27": "x",
+      "custom_28": "x",
+      "custom_29": "x",
+      "custom_30": "x",
+      "custom_31": "x",
+      "custom_32": "x",
+      "custom_33": "x",
+      "custom_34": "x",
+      "custom_35": "x",
+      "custom_36": "x",
+      "custom_37": "x",
+      "custom_38": "x",
+      "custom_39": "x",
+      "custom_40": "x",
+      "custom_41": "x",
+      "custom_42": "x",
+      "custom_43": "x",
+      "custom_44": "x",
+      "custom_45": "x",
+      "custom_46": "x",
+      "custom_47": "x",
+      "custom_48": "x",
+      "custom_49": "x",
+      "custom_50": "x",
+      "custom_51": "x",
+      "custom_52": "x",
+      "custom_53": "x",
+      "custom_54": "x",
+      "custom_55": "x",
+      "custom_56": "x",
+      "custom_57": "x",
+      "custom_58": "x",
+      "custom_59": "x",
+      "custom_60": "x"
+    }
+  },
+  "expect": {
+    "status": 400,
+    "content_type": "application/problem+json",
+    "body": {
+      "code": "bad_request",
+      "detail": "The request body has 60 problems. The first 50 are listed."
+    },
+    "errors_count": 50
+  }
+}

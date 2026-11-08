@@ -1,0 +1,62 @@
+{
+  "id": "F26",
+  "group": "failing",
+  "title": "Unknown country code at the end (\", XX\")",
+  "why": "Client appends its own country field.",
+  "request": {
+    "method": "POST",
+    "path": "/v1/orders",
+    "headers": {
+      "Authorization": "Bearer {{key:live}}",
+      "Content-Type": "application/json",
+      "Idempotency-Key": "{{idem}}"
+    },
+    "body": {
+      "ref": "TEST-PO-1026",
+      "pickup": {
+        "address": "1200 Example Pkwy, Chicago, IL, 60601, XX",
+        "date": "{{date:+3}}"
+      },
+      "delivery": {
+        "address": "2200 Sample Rd, Columbus, OH, 43217",
+        "date": "{{date:+4}}"
+      },
+      "equipment": "tractor",
+      "pieces": 12,
+      "weight": {
+        "value": 2400,
+        "unit": "lbs"
+      },
+      "commodity": "Boxed machine parts"
+    }
+  },
+  "expect": {
+    "status": 201,
+    "content_type": "application/json",
+    "body": {
+      "ref": "TEST-PO-1026",
+      "status": "submitted",
+      "pickup": {
+        "address": "1200 Example Pkwy, Chicago, IL, 60601, XX",
+        "date": "{{date:+3}}"
+      },
+      "delivery": {
+        "address": "2200 Sample Rd, Columbus, OH, 43217",
+        "date": "{{date:+4}}"
+      },
+      "equipment": "tractor",
+      "pieces": 12,
+      "weight": {
+        "value": 2400,
+        "unit": "lbs"
+      },
+      "commodity": "Boxed machine parts",
+      "loads": []
+    },
+    "body_match": {
+      "id": "^REQ-[0-9]+$",
+      "created_at": "^[0-9]{4}-[0-9]{2}-[0-9]{2}T[0-9]{2}:[0-9]{2}:[0-9]{2}Z$"
+    }
+  },
+  "note": "Placed, by design: XX is neither a US state nor CA/MX, so the whole address reads as unreadable (even though Chicago, IL is in it) and goes to review."
+}

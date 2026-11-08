@@ -1,0 +1,52 @@
+{
+  "id": "F09",
+  "group": "failing",
+  "title": "Impossible delivery date (2027-02-30)",
+  "why": "Client adds days to a date without a calendar.",
+  "request": {
+    "method": "POST",
+    "path": "/v1/orders",
+    "headers": {
+      "Authorization": "Bearer {{key:live}}",
+      "Content-Type": "application/json",
+      "Idempotency-Key": "{{idem}}"
+    },
+    "body": {
+      "ref": "TEST-PO-1001",
+      "pickup": {
+        "address": "1200 Example Pkwy, Elk Grove Village, IL, 60007",
+        "date": "{{date:+3}}"
+      },
+      "delivery": {
+        "address": "2200 Sample Rd, Columbus, OH, 43217",
+        "date": "2027-02-30"
+      },
+      "equipment": "tractor",
+      "pieces": 12,
+      "weight": {
+        "value": 2400,
+        "unit": "lbs"
+      },
+      "commodity": "Boxed machine parts"
+    }
+  },
+  "expect": {
+    "status": 400,
+    "content_type": "application/problem+json",
+    "body": {
+      "type": "about:blank",
+      "title": "Bad request",
+      "status": 400,
+      "code": "bad_request",
+      "detail": "The request body has 1 problem."
+    },
+    "errors": [
+      {
+        "field": "delivery.date",
+        "code": "invalid_format",
+        "message": "delivery.date is not a real date in YYYY-MM-DD form.",
+        "fix": "Send delivery.date as YYYY-MM-DD or null."
+      }
+    ]
+  }
+}

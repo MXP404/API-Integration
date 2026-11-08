@@ -1,0 +1,25 @@
+{
+  "id": "F51",
+  "group": "failing",
+  "title": "Order id that does not exist",
+  "why": "Client mistypes the id.",
+  "request": {
+    "method": "GET",
+    "path": "/v1/orders/REQ-999999999",
+    "headers": {
+      "Authorization": "Bearer {{key:live}}"
+    }
+  },
+  "expect": {
+    "status": 404,
+    "content_type": "application/problem+json",
+    "body": {
+      "type": "about:blank",
+      "title": "Not found",
+      "status": 404,
+      "code": "not_found",
+      "detail": "Nothing was found for this key."
+    },
+    "no_errors": true
+  }
+}

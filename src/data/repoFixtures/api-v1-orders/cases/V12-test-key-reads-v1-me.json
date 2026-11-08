@@ -1,0 +1,35 @@
+{
+  "id": "V12",
+  "group": "valid",
+  "title": "Test key reads /v1/me",
+  "why": "The client checks which kind of key it holds.",
+  "request": {
+    "method": "GET",
+    "path": "/v1/me",
+    "headers": {
+      "Authorization": "Bearer {{key:test}}"
+    }
+  },
+  "expect": {
+    "status": 200,
+    "content_type": "application/json",
+    "body": {
+      "user": {
+        "name": "Casey Example",
+        "email": "casey.ops@example.com"
+      },
+      "client": {
+        "code": "ZLW",
+        "name": "Lakeshore Widget Supply (test)"
+      }
+    }
+  },
+  "contract": {
+    "status": 200,
+    "body": {
+      "mode": "test"
+    },
+    "note": "Contract Account requires mode (live or test). The code returns no mode."
+  },
+  "gap": "test-keys-not-built"
+}

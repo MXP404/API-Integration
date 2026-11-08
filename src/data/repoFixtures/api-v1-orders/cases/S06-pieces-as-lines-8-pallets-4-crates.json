@@ -1,0 +1,69 @@
+{
+  "id": "S06",
+  "group": "contract-shape",
+  "title": "Pieces as lines (8 pallets + 4 crates)",
+  "why": "Owner 11-06 confirmed pieces lines. Provisional shape.",
+  "request": {
+    "method": "POST",
+    "path": "/v1/orders",
+    "headers": {
+      "Authorization": "Bearer {{key:live}}",
+      "Content-Type": "application/json",
+      "Idempotency-Key": "{{idem}}"
+    },
+    "body": {
+      "ref": "TEST-PO-2006",
+      "pickup": {
+        "address": "1200 Example Pkwy, Elk Grove Village, IL, 60007",
+        "date": "{{date:+3}}"
+      },
+      "delivery": {
+        "address": "2200 Sample Rd, Columbus, OH, 43217",
+        "date": "{{date:+4}}"
+      },
+      "equipment": "tractor",
+      "pieces": [
+        {
+          "count": 8,
+          "type": "pallet",
+          "length_in": 48,
+          "width_in": 40,
+          "height_in": 50
+        },
+        {
+          "count": 4,
+          "type": "crate"
+        }
+      ],
+      "weight": {
+        "value": 2400,
+        "unit": "lbs"
+      },
+      "commodity": "Boxed machine parts"
+    }
+  },
+  "expect": {
+    "status": 400,
+    "content_type": "application/problem+json",
+    "body": {
+      "type": "about:blank",
+      "title": "Bad request",
+      "status": 400,
+      "code": "bad_request",
+      "detail": "The request body has 1 problem."
+    },
+    "errors": [
+      {
+        "field": "pieces",
+        "code": "wrong_type",
+        "message": "pieces must be a number.",
+        "fix": "Send pieces as a whole number from 0 to 100000."
+      }
+    ]
+  },
+  "contract": {
+    "status": 400,
+    "note": "Contract pieces is an integer, so code and contract agree. Gap against the 11-06 review only."
+  },
+  "gap": "ruled-shape-not-in-contract"
+}

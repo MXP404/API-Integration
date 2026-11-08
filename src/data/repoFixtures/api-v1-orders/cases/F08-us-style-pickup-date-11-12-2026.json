@@ -1,0 +1,52 @@
+{
+  "id": "F08",
+  "group": "failing",
+  "title": "US-style pickup date (11/12/2026)",
+  "why": "Client sends the date as shown on its screen.",
+  "request": {
+    "method": "POST",
+    "path": "/v1/orders",
+    "headers": {
+      "Authorization": "Bearer {{key:live}}",
+      "Content-Type": "application/json",
+      "Idempotency-Key": "{{idem}}"
+    },
+    "body": {
+      "ref": "TEST-PO-1001",
+      "pickup": {
+        "address": "1200 Example Pkwy, Elk Grove Village, IL, 60007",
+        "date": "11/12/2026"
+      },
+      "delivery": {
+        "address": "2200 Sample Rd, Columbus, OH, 43217",
+        "date": "{{date:+4}}"
+      },
+      "equipment": "tractor",
+      "pieces": 12,
+      "weight": {
+        "value": 2400,
+        "unit": "lbs"
+      },
+      "commodity": "Boxed machine parts"
+    }
+  },
+  "expect": {
+    "status": 400,
+    "content_type": "application/problem+json",
+    "body": {
+      "type": "about:blank",
+      "title": "Bad request",
+      "status": 400,
+      "code": "bad_request",
+      "detail": "The request body has 1 problem."
+    },
+    "errors": [
+      {
+        "field": "pickup.date",
+        "code": "invalid_format",
+        "message": "pickup.date is not a real date in YYYY-MM-DD form.",
+        "fix": "Send pickup.date as YYYY-MM-DD."
+      }
+    ]
+  }
+}

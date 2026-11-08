@@ -1,0 +1,28 @@
+{
+  "id": "F46",
+  "group": "failing",
+  "title": "Key sent in the query string",
+  "why": "Client copies the habit from another carrier's API.",
+  "request": {
+    "method": "GET",
+    "path": "/v1/orders?api_key={{key:live}}",
+    "headers": {
+      "Authorization": "Bearer {{key:live}}"
+    }
+  },
+  "expect": {
+    "status": 401,
+    "content_type": "application/problem+json",
+    "body": {
+      "type": "about:blank",
+      "title": "Unauthorized",
+      "status": 401,
+      "code": "unauthorized",
+      "detail": "API keys are not accepted in a query string."
+    },
+    "no_errors": true,
+    "headers": {
+      "WWW-Authenticate": "Bearer"
+    }
+  }
+}

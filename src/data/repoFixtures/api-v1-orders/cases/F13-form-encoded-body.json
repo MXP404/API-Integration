@@ -1,0 +1,28 @@
+{
+  "id": "F13",
+  "group": "failing",
+  "title": "Form-encoded body",
+  "why": "Client posts the order like a web form.",
+  "request": {
+    "method": "POST",
+    "path": "/v1/orders",
+    "headers": {
+      "Authorization": "Bearer {{key:live}}",
+      "Content-Type": "application/x-www-form-urlencoded",
+      "Idempotency-Key": "{{idem}}"
+    },
+    "raw_body": "ref=TEST-PO-1013&pickup_address=1200+Example+Pkwy%2C+Elk+Grove+Village%2C+IL%2C+60007&pickup_date={{date:+3}}"
+  },
+  "expect": {
+    "status": 415,
+    "content_type": "application/problem+json",
+    "body": {
+      "type": "about:blank",
+      "title": "Unsupported media type",
+      "status": 415,
+      "code": "unsupported_media_type",
+      "detail": "The request body must be application/json."
+    },
+    "no_errors": true
+  }
+}

@@ -1,0 +1,61 @@
+{
+  "id": "V02",
+  "group": "valid",
+  "title": "Straight truck, weight in kg, delivery date null",
+  "why": "Metric shipper; delivery day left open for Moscoso to set.",
+  "request": {
+    "method": "POST",
+    "path": "/v1/orders",
+    "headers": {
+      "Authorization": "Bearer {{key:live}}",
+      "Content-Type": "application/json",
+      "Idempotency-Key": "{{idem}}"
+    },
+    "body": {
+      "ref": "TEST-PO-1002",
+      "pickup": {
+        "address": "450 Placeholder Ave, Milwaukee, WI 53204",
+        "date": "{{date:+2}}"
+      },
+      "delivery": {
+        "address": "1500 Fictional Way, St. Louis, MO, 63110",
+        "date": null
+      },
+      "equipment": "straight_truck",
+      "pieces": 4,
+      "weight": {
+        "value": 900,
+        "unit": "kg"
+      },
+      "commodity": "Display fixtures"
+    }
+  },
+  "expect": {
+    "status": 201,
+    "content_type": "application/json",
+    "body": {
+      "ref": "TEST-PO-1002",
+      "status": "submitted",
+      "pickup": {
+        "address": "450 Placeholder Ave, Milwaukee, WI 53204",
+        "date": "{{date:+2}}"
+      },
+      "delivery": {
+        "address": "1500 Fictional Way, St. Louis, MO, 63110",
+        "date": null
+      },
+      "equipment": "straight_truck",
+      "pieces": 4,
+      "weight": {
+        "value": 900,
+        "unit": "kg"
+      },
+      "commodity": "Display fixtures",
+      "loads": []
+    },
+    "body_match": {
+      "id": "^REQ-[0-9]+$",
+      "created_at": "^[0-9]{4}-[0-9]{2}-[0-9]{2}T[0-9]{2}:[0-9]{2}:[0-9]{2}Z$"
+    }
+  }
+}

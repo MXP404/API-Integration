@@ -1,0 +1,47 @@
+{
+  "id": "F41",
+  "group": "failing",
+  "title": "No Authorization header",
+  "why": "Client forgets to attach its key.",
+  "request": {
+    "method": "POST",
+    "path": "/v1/orders",
+    "headers": {
+      "Content-Type": "application/json",
+      "Idempotency-Key": "{{idem}}"
+    },
+    "body": {
+      "ref": "TEST-PO-1001",
+      "pickup": {
+        "address": "1200 Example Pkwy, Elk Grove Village, IL, 60007",
+        "date": "{{date:+3}}"
+      },
+      "delivery": {
+        "address": "2200 Sample Rd, Columbus, OH, 43217",
+        "date": "{{date:+4}}"
+      },
+      "equipment": "tractor",
+      "pieces": 12,
+      "weight": {
+        "value": 2400,
+        "unit": "lbs"
+      },
+      "commodity": "Boxed machine parts"
+    }
+  },
+  "expect": {
+    "status": 401,
+    "content_type": "application/problem+json",
+    "body": {
+      "type": "about:blank",
+      "title": "Unauthorized",
+      "status": 401,
+      "code": "unauthorized",
+      "detail": "A valid API key is required."
+    },
+    "no_errors": true,
+    "headers": {
+      "WWW-Authenticate": "Bearer"
+    }
+  }
+}

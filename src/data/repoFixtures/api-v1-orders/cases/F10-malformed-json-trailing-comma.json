@@ -1,0 +1,27 @@
+{
+  "id": "F10",
+  "group": "failing",
+  "title": "Malformed JSON (trailing comma)",
+  "why": "Hand-built JSON string.",
+  "request": {
+    "method": "POST",
+    "path": "/v1/orders",
+    "headers": {
+      "Authorization": "Bearer {{key:live}}",
+      "Content-Type": "application/json",
+      "Idempotency-Key": "{{idem}}"
+    },
+    "raw_body": "{\"ref\":\"TEST-PO-1010\",\"pickup\":{\"address\":\"1200 Example Pkwy, Elk Grove Village, IL, 60007\",\"date\":\"{{date:+3}}\"},\"delivery\":{\"address\":\"2200 Sample Rd, Columbus, OH, 43217\"},}"
+  },
+  "expect": {
+    "status": 400,
+    "content_type": "application/problem+json",
+    "body": {
+      "title": "Bad request",
+      "status": 400,
+      "code": "bad_request",
+      "detail": "The body is not valid JSON."
+    },
+    "no_errors": true
+  }
+}

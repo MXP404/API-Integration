@@ -1,0 +1,62 @@
+{
+  "id": "V04",
+  "group": "valid",
+  "title": "Sprinter, same-day delivery, address ending in USA, notes",
+  "why": "Small expedited load; the window goes in notes because the code has no window fields yet.",
+  "request": {
+    "method": "POST",
+    "path": "/v1/orders",
+    "headers": {
+      "Authorization": "Bearer {{key:live}}",
+      "Content-Type": "application/json",
+      "Idempotency-Key": "{{idem}}"
+    },
+    "body": {
+      "ref": "TEST-PO-1004",
+      "pickup": {
+        "address": "9000 Demo Blvd, Detroit, MI, 48201, USA",
+        "date": "{{date:+5}}"
+      },
+      "delivery": {
+        "address": "310 Mock Ln, Louisville, KY 40213",
+        "date": "{{date:+5}}"
+      },
+      "equipment": "sprinter",
+      "pieces": 2,
+      "weight": {
+        "value": 180,
+        "unit": "lbs"
+      },
+      "commodity": "Medical supplies",
+      "notes": "Liftgate needed at delivery. Receiving open 07:00-15:00."
+    }
+  },
+  "expect": {
+    "status": 201,
+    "content_type": "application/json",
+    "body": {
+      "ref": "TEST-PO-1004",
+      "status": "submitted",
+      "pickup": {
+        "address": "9000 Demo Blvd, Detroit, MI, 48201, USA",
+        "date": "{{date:+5}}"
+      },
+      "delivery": {
+        "address": "310 Mock Ln, Louisville, KY 40213",
+        "date": "{{date:+5}}"
+      },
+      "equipment": "sprinter",
+      "pieces": 2,
+      "weight": {
+        "value": 180,
+        "unit": "lbs"
+      },
+      "commodity": "Medical supplies",
+      "loads": []
+    },
+    "body_match": {
+      "id": "^REQ-[0-9]+$",
+      "created_at": "^[0-9]{4}-[0-9]{2}-[0-9]{2}T[0-9]{2}:[0-9]{2}:[0-9]{2}Z$"
+    }
+  }
+}

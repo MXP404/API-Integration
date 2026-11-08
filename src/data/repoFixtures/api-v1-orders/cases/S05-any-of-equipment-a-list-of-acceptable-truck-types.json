@@ -1,0 +1,60 @@
+{
+  "id": "S05",
+  "group": "contract-shape",
+  "title": "Any-of equipment: a list of acceptable truck types",
+  "why": "Owner review 11-06: equipment on an order is a list of acceptable types. Provisional shape.",
+  "request": {
+    "method": "POST",
+    "path": "/v1/orders",
+    "headers": {
+      "Authorization": "Bearer {{key:live}}",
+      "Content-Type": "application/json",
+      "Idempotency-Key": "{{idem}}"
+    },
+    "body": {
+      "ref": "TEST-PO-2005",
+      "pickup": {
+        "address": "1200 Example Pkwy, Elk Grove Village, IL, 60007",
+        "date": "{{date:+3}}"
+      },
+      "delivery": {
+        "address": "2200 Sample Rd, Columbus, OH, 43217",
+        "date": "{{date:+4}}"
+      },
+      "equipment": [
+        "tractor",
+        "straight_truck"
+      ],
+      "pieces": 12,
+      "weight": {
+        "value": 2400,
+        "unit": "lbs"
+      },
+      "commodity": "Boxed machine parts"
+    }
+  },
+  "expect": {
+    "status": 400,
+    "content_type": "application/problem+json",
+    "body": {
+      "type": "about:blank",
+      "title": "Bad request",
+      "status": 400,
+      "code": "bad_request",
+      "detail": "The request body has 1 problem."
+    },
+    "errors": [
+      {
+        "field": "equipment",
+        "code": "wrong_type",
+        "message": "equipment must be a string.",
+        "fix": "Send equipment as one of tractor, straight_truck, sprinter."
+      }
+    ]
+  },
+  "contract": {
+    "status": 400,
+    "note": "Contract EquipmentType is a single string, so code and contract agree. Gap against the 11-06 review only."
+  },
+  "gap": "ruled-shape-not-in-contract"
+}

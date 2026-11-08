@@ -1,0 +1,50 @@
+{
+  "id": "V03",
+  "group": "valid",
+  "title": "Minimal order: ref, pickup with date, delivery address only; full state name",
+  "why": "Smallest body the code takes. Delivery address spells out \"Indiana\", which reads as an allowed state.",
+  "request": {
+    "method": "POST",
+    "path": "/v1/orders",
+    "headers": {
+      "Authorization": "Bearer {{key:live}}",
+      "Content-Type": "application/json",
+      "Idempotency-Key": "{{idem}}"
+    },
+    "body": {
+      "ref": "TEST-PO-1003",
+      "pickup": {
+        "address": "15 Warehouse Row, Joliet, IL 60431",
+        "date": "{{date:+1}}"
+      },
+      "delivery": {
+        "address": "77 Test Industrial Dr, Indianapolis, Indiana 46241"
+      }
+    }
+  },
+  "expect": {
+    "status": 201,
+    "content_type": "application/json",
+    "body": {
+      "ref": "TEST-PO-1003",
+      "status": "submitted",
+      "pickup": {
+        "address": "15 Warehouse Row, Joliet, IL 60431",
+        "date": "{{date:+1}}"
+      },
+      "delivery": {
+        "address": "77 Test Industrial Dr, Indianapolis, Indiana 46241",
+        "date": null
+      },
+      "equipment": null,
+      "pieces": null,
+      "weight": null,
+      "commodity": null,
+      "loads": []
+    },
+    "body_match": {
+      "id": "^REQ-[0-9]+$",
+      "created_at": "^[0-9]{4}-[0-9]{2}-[0-9]{2}T[0-9]{2}:[0-9]{2}:[0-9]{2}Z$"
+    }
+  }
+}

@@ -1,0 +1,47 @@
+{
+  "id": "F01",
+  "group": "failing",
+  "title": "Empty JSON object",
+  "why": "A client library sends {} when its order mapping fails.",
+  "request": {
+    "method": "POST",
+    "path": "/v1/orders",
+    "headers": {
+      "Authorization": "Bearer {{key:live}}",
+      "Content-Type": "application/json",
+      "Idempotency-Key": "{{idem}}"
+    },
+    "body": {}
+  },
+  "expect": {
+    "status": 400,
+    "content_type": "application/problem+json",
+    "body": {
+      "type": "about:blank",
+      "title": "Bad request",
+      "status": 400,
+      "code": "bad_request",
+      "detail": "The request body has 3 problems."
+    },
+    "errors": [
+      {
+        "field": "ref",
+        "code": "required",
+        "message": "ref is missing.",
+        "fix": "Send ref as a string of 1 to 100 characters."
+      },
+      {
+        "field": "pickup",
+        "code": "required",
+        "message": "pickup is missing.",
+        "fix": "Send pickup as an object."
+      },
+      {
+        "field": "delivery",
+        "code": "required",
+        "message": "delivery is missing.",
+        "fix": "Send delivery as an object."
+      }
+    ]
+  }
+}
